@@ -1,0 +1,141 @@
+    1  exit
+    2  lab cat /usr/lhistory
+    3  history
+    4  cat /usr/share/bash-completion/completions/lab 
+    5  cat ~/.bashrc 
+    6  helm version
+    7  vi ~/.bashrc
+    8  ssh lab@utility
+    9  exit
+   10  lab --refresh
+   11  exit
+   12  exit
+   13  exit
+   14  exit
+   15  lab-configure
+   16  ip a | grep inet
+   17  exit
+   18  pwd
+   19  cd ~
+   20  ls
+   21  cd DO288-apps/
+   22  ls
+   23  lab docker-build start
+   24  ls
+   25  pwd
+   26  git checkout main
+   27  git checkout -b docker-build
+   28  git push -u origin docker-build
+   29  cat ubi-echo/Dockerfile
+   30  source /usr/local/etc/ocp4.config
+   31  $ oc login -u ${RHT_OCP4_DEV_USER} -p ${RHT_OCP4_DEV_PASSWORD} ${RHT_OCP4_MASTER_API}
+   32  cat /usr/local/etc/ocp4.config 
+   33  $ oc login -u ${RHT_OCP4_DEV_USER} -p ${RHT_OCP4_DEV_PASSWORD} ${RHT_OCP4_MASTER_API}
+   34   oc login -u ${RHT_OCP4_DEV_USER} -p ${RHT_OCP4_DEV_PASSWORD} ${RHT_OCP4_MASTER_API}
+   35  oc new-project ${RHT_OCP4_DEV_USER}-docker-build
+   36  oc new-app --name echo https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps#docker-build --context-dir ubi-echo
+   37  oc status
+   38  oc logs -f bc/echo
+   39  oc status
+   40  oc get pod
+   41  oc logs echo-6c589dfb5f-8x6bn | tail -n 3
+   42  oc describe bc echo
+   43  cls
+   44  clear
+   45  oc describe bc echo
+   46  cd ubi-echo/
+   47  ls
+   48  vim Dockerfile 
+   49  cat Dockerfile 
+   50  git commit -a -m 'Add a counter'
+   51  git push
+   52  oc start-build echo
+   53  oc logs -f bc/echo
+   54  oc status
+   55  oc get pod
+   56  oc logs echo-84474878c5-rkfm7 | head -n 3
+   57  oc describe is echo
+   58   oc delete all -l app=echo
+   59  oc get all
+   60  lab docker-build finish
+   61  oc whoami -c
+   62  oc show console
+   63  oc whoami --show-console
+   64  lab deploy-image finish
+   65  lab build-template start
+   66  cd..
+   67  cd ..
+   68  ls
+   69  git checkout main
+   70  ls quotes/
+   71  less quotes/get.php 
+   72  ls
+   73  ls -l
+   74  pw
+   75  pwdf
+   76  pwd
+   77  cd ~
+   78  ls
+   79  cat DO288/labs/build-template/php-mysql-ephemeral.json 
+   80  clea
+   81  clear
+   82  source /usr/local/etc/ocp4.config
+   83  oc whoami
+   84  $ oc get templates -n openshift | grep php | grep mysql
+   85   oc get templates -n openshift | grep php | grep mysql
+   86  oc new-project ${RHT_OCP4_DEV_USER}-common
+   87  oc create -f ~/DO288/labs/build-template/php-mysql-ephemeral.json
+   88  oc new-project ${RHT_OCP4_DEV_USER}-build-template
+   89  $ oc describe template php-mysql-ephemeral -n ${RHT_OCP4_DEV_USER}-common
+   90   oc describe template php-mysql-ephemeral -n ${RHT_OCP4_DEV_USER}-common
+   91  cat ~/DO288/labs/build-template/create-app.sh
+   92  ~/DO288/labs/build-template/create-app.sh
+   93  oc status
+   94  oc logs -f bc/quotesapi
+   95  oc get pod
+   96  oc get route
+   97  curl -si http://quote-$RHT_OCP4_DEV_USER.$RHT_OCP4_WILDCARD_DOMAIN/get.php
+   98  oc describe svc quotesdb | grep Endpoints
+   99  oc describe pod quotesdb-56566995c7-7rm7w | grep IP
+  100  oc describe pod quotesdb-6b7ffcc649-dslpq | grep -A 4 Environment
+  101  oc describe pod quotesdb-56566995c7-7rm7w | grep -A 4 Environment
+  102  oc describe pod quotesdb-56566995c7-7rm7w | grep -A 5 Environment
+  103  #oc rsh quotesapi-7d76ff58f8-6j2gx bash -c \
+  104  'echo > /dev/tcp/$DATABASE_SERVICE_NAME/3306 && echo OK || echo FAIL'
+  105  oc rsh quotesdb-56566995c7-7rm7w bash -c 'echo > /dev/tcp/$DATABASE_SERVICE_NAME/3306 && echo OK || echo FAIL'
+  106  oc rsh quotesapi-5f64ccbc68-mqln4 bash -c \ 'echo > /dev/tcp/$DATABASE_SERVICE_NAME/3306 && echo OK || echo FAIL'
+  107  oc logs  quotesapi-5f64ccbc68-mqln4 
+  108  oc logs  quotesapi-5f64ccbc68-mqln4 | grep exist
+  109  oc logs  quotesapi-5f64ccbc68-mqln4 | grep error
+  110  #
+  111* oc cp ~/DO288/labs/build-template/quote.sql quotes
+  112  oc cp ~/DO288/labs/build-template/quote.sql quotesdb-56566995c7-7rm7w:/tmp/quote.sql
+  113  oc rsh -t quotesdb-56566995c7-7rm7w 
+  114  curl -si http://quote-$RHT_OCP4_DEV_USER.$RHT_OCP4_WILDCARD_DOMAIN/get.php
+  115  cd 
+  116  cd ~
+  117  oc delete project ${RHT_OCP4_DEV_USER}-build-template
+  118  oc delete project ${RHT_OCP4_DEV_USER}-common
+  119  lab build-template finish
+  120  lab source-build start
+  121  ls
+  122  pwd
+  123  cd DO288-apps/
+  124  ls
+  125  history | grep git
+  126  git checkout main
+  127  git checkout -b source-build
+  128  git push-u origin source-build
+  129  git push -u origin source-build
+  130  history 
+  131  history | grep project
+  132  oc new-project ${RHT_OCP4_DEV_USER}-source-build
+  133  history | grep new-app
+  134  oc whoami
+  135  cd nodejs-helloworld/
+  136  ls
+  137  cat package.json 
+  138  pwd
+  139  oc create -f /home/student/DO288-apps/nodejs-helloworld/package.json
+  140  oc create -f /home/student/DO288-apps/nodejs-helloworld/
+  141  history >his.txt
